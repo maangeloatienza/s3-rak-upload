@@ -1,0 +1,6 @@
+install:
+  - "npm install"
+  - "export TRAVIS=1"
+language: node_js
+node_js:
+  - "5.0.0"
