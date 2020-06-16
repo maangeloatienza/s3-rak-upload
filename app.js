@@ -14,9 +14,7 @@ let configurationSetting = {
     database: process.env.MYSQL_DATABASE,
 }
 
-console.log(configurationSetting.user)
 SetupDB.connect(configurationSetting);
-
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: false, parameterLimit: 50000, type: '*/x-www-form-urlencoded' }));

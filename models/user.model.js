@@ -6,12 +6,13 @@ const User = function(user){
     this.user = user;
 };
 
-User.index = async ({ where = '', offset = '', result }) => {
+User.index = async ({fetchAll = false ,where = '', offset = '', result }) => {
     let query = `SELECT \
             user.id AS id, \
             first_name,\
             last_name, \
             username, \
+            password, \
             email, \
             phone_number, \
             name AS role, \
@@ -22,7 +23,7 @@ User.index = async ({ where = '', offset = '', result }) => {
             LEFT JOIN roles role \
             ON role.id = user.role_id \
             ${where} ${offset}`;
-    
+    console.log('FETCH ALL',fetchAll)
     let [err,user] = await Global.exe(db.build(query).promise());
     if(err){
         console.log(`USER MODEL ERROR: `,err);
@@ -30,6 +31,12 @@ User.index = async ({ where = '', offset = '', result }) => {
         return;
     }
 
+    if(!fetchAll) {
+        for (let key in user) {
+            delete user[key].password;
+        }
+    }
+    
     console.log(`USER DATA : `,user);
     result(null, user);
     
