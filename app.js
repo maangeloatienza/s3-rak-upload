@@ -1,20 +1,20 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const SetupDB = require('./database/config');
+// const SetupDB = require('./database/config');
 const routes = require('./routes/routes');
 const app = express();
 
 require('dotenv').config();
 
 
-let configurationSetting = {
-    host: process.env.MYSQL_HOST,
-    user: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DATABASE,
-}
+// let configurationSetting = {
+//     host: process.env.MYSQL_HOST,
+//     user: process.env.MYSQL_USER,
+//     password: process.env.MYSQL_PASSWORD,
+//     database: process.env.MYSQL_DATABASE,
+// }
 
-SetupDB.connect(configurationSetting);
+// SetupDB.connect(configurationSetting);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: false, parameterLimit: 50000, type: '*/x-www-form-urlencoded' }));

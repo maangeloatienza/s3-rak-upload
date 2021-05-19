@@ -10,7 +10,7 @@ const server = http.createServer(app);
 server.listen(PORT,()=>{
     console.log('Server started');
     console.log('==================');
-    console.log(`Sserver running at \nPORT    ||    ${PORT}`);
+    console.log(`Server running at \nPORT    ||    ${PORT}`);
     console.log('==================');
 
 });
