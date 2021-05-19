@@ -16,9 +16,8 @@ npm install
 ```
 PORT = your_desired_port_number
 
-
-MYSQL_HOST = yourdb_host
-MYSQL_USER = yourdb_user
-MYSQL_PASSWORD = yourdb_passowrd
-MYSQL_DATABASE = yourdb_name
+AWS_ACCESS_KEY = AKIA4B7VIDZJLX32WN66
+AWS_SECRET_ACCESS_KEY = 0ifDz06qh7rLxgxUoobwog2z9bWka0JGKSMcd7Fp
+AWS_BUCKET_NAME = s3-rak-upload
+AWS_REGION = us-east-2
 ```
