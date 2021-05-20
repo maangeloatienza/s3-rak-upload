@@ -16,7 +16,9 @@ router.delete('/users/:id', authorization,  __.userController.remove);
 
 router.post('/login', __.authenticationController.login);
 
-router.post('/s3-upload', upload.array('file'), __.s3UploadController.store);
+router.post('/s3-upload/documents', upload.array('docs'), __.s3UploadController.store);
+router.post('/s3-upload/graphic-materials', upload.array('materials'), __.s3UploadController.store);
+router.post('/s3-upload/snapshots', upload.array('snapshots'), __.s3UploadController.store);
 
 
 module.exports = router;
