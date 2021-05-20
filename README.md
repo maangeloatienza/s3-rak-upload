@@ -1,4 +1,4 @@
-# create-express-mysql
+# s3-rak-upload
 
 A basic template for creating **RESTFUL API**.   
 Developed using **Expressjs** and **MySQL** as database.
