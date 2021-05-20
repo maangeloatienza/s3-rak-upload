@@ -49,7 +49,10 @@ const store =  (req,res,next) => {
 
         console.log(uploadData)
       }).catch(function(s3Err) {
-        console.log(s3Err);
+        Global.fail(res, {
+          message: FAILED_TO_CREATE,
+          context : s3Err
+        }, 500);
       });
     })
 
