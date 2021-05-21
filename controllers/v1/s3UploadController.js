@@ -17,8 +17,13 @@ const store =  (req,res,next) => {
 
   files.map(file=>{
     let fileName = `${file.destination}${file.filename}`
+    if(file.size > (1024*1024*10)){
+      Global.fail(res,{
+        message : 'File is to large to upload.',
+        context : 'FILE TOO LARGE'
+      },500)
+    }
     fs.readFile(fileName, (err, data) => {
-    
     if (err){
       Global.fail(res, { 
           context : err
@@ -38,16 +43,12 @@ const store =  (req,res,next) => {
           s3Res : data,
         })
         if(uploadData.length === files.length){
-          console.log(uploadData)
-    
             Global.success(res, {
               data : uploadData,
               message:`File(s) uploaded successfully at ${process.env.AWS_BUCKET_NAME}`
             }, 200);
         }
        }
-
-        console.log(uploadData)
       }).catch(function(s3Err) {
         Global.fail(res, {
           message: FAILED_TO_CREATE,
@@ -55,64 +56,7 @@ const store =  (req,res,next) => {
         }, 500);
       });
     })
-
-   
-   
   })
-  
-  // const readUpload = (file,fileName)=>{
-  //   fs.readFile(fileName, (err, data) => {
-    
-  //     if (err){
-  //       Global.fail(res, { 
-  //           context : err
-  //       }, 500);
-  //     }
-  //     let params = {
-  //         Bucket: bucket, 
-  //         Key: file.originalname, 
-  //         Body: JSON.stringify(data, null, 2)
-  //     };
-
-
-  //     s3.upload(params, function(s3Err, data) {
-  //         if (s3Err){
-  //           Global.fail(res, {
-  //               message: FAILED_TO_CREATE,
-  //               context : s3Err
-  //           }, 500);
-  //         }
-          
-   
-  //         if(data){
-  //           uploadData.push({
-  //             name : file.originalname,
-  //             link :data.location,
-  //             // link : `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${file.originalname}`
-  //           })
-  //           if(uploadData.length === req.files.length){
-  //               Global.success(res, {
-  //                 data : uploadData,
-  //                 message:`File(s) uploaded successfully at ${process.env.AWS_BUCKET_NAME}`
-  //               }, 200);
-  //           }
-  //         }
-  //         console.log(data);
-  //     });
-  //   });
-  // }
-
-  // const responses = await Promise.all(
-  //   files.map(file => {
-  //     let fileName = `${file.destination}${file.filename}`
-  //     readUpload(file,fileName).promise()
-  //   })
-    
-  // )
-  // for(let i = 0; i < req.files.length;i++){
-  //   let fileName = `${req.files[i].destination}${req.files[i].filename}`
-  //   readUpload(req.files[i],fileName);
-  // }
 
 }
 
