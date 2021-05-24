@@ -11,14 +11,21 @@ const upload = multer(
     // limits: { 
     //   fileSize: 2 * 1024 * 1024 
     // },
-    fileFilter : (req,file,cb)=>{
-      if (file.mimetype !== "text/html" || file.mimetype !== "text/javascript" ) {
-        cb(null, true);
-      } else {
-        cb(null, false);
-        return cb(new Error('File type not supported!'));
-      }
-    }
+    // fileFilter : (req,file,cb)=>{
+    //   if (file.mimetype === "application/pdf" ||
+    //       file.mimetype === "application/msword" ||
+    //       file.mimetype === "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
+    //       file.mimetype === "image/jpeg" ||
+    //       file.mimetype === "image/pjpeg" ||
+    //       file.mimetype === "image/png" ||
+    //       file.mimetype === "video/mp4" ||
+    //       file.mimetype === "audio/mpeg"  ) {
+    //     cb(null, true);
+    //   } else {
+    //     cb(null, false);
+    //     return cb(new Error('File type not supported!'));
+    //   }
+    // }
   });
 
   
