@@ -14,7 +14,7 @@ const store =  (req,res,next) => {
   let files = req.files;
   let bucket =process.env.AWS_BUCKET_NAME;
 
-
+  console.log(files)
   files.map(file=>{
     let fileName = `${file.destination}${file.filename}`
     if(file.size > (1024*1024*10)){
@@ -29,10 +29,15 @@ const store =  (req,res,next) => {
           context : err
       }, 500);
     }
+    console.log(data)
     let params = {
         Bucket: bucket, 
         Key: file.originalname, 
-        Body: JSON.stringify(data, null, 2)
+        Body: data,
+        // Metadata: {
+        //   'Content-Type': file.mimetype
+        // }
+        ContentType: file.mimetype
     };
 
     let putObjectPromise = s3.upload(params).promise();
