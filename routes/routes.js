@@ -41,6 +41,7 @@ router.post('/login', __.authenticationController.login);
 router.post('/s3-upload/documents', upload.array('docs'), __.s3UploadController.store);
 router.post('/s3-upload/graphic-materials', upload.array('materials'), __.s3UploadController.store);
 router.post('/s3-upload/snapshots', upload.array('snapshots'), __.s3UploadController.store);
+router.post('/s3-upload/logo', upload.array('logo'), __.s3UploadController.store);
 
 
 module.exports = router;

@@ -24,6 +24,8 @@ const store =  (req,res,next) => {
     }
     if (  file.mimetype === "application/pdf" ||
           file.mimetype === "application/msword" ||
+          file.mimetype === "application/postscript" ||
+          file.mimetype === "image/svg+xml" ||
           file.mimetype === "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
           file.mimetype === "image/jpeg" ||
           file.mimetype === "image/pjpeg" ||
